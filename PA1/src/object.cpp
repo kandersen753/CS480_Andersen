@@ -61,6 +61,8 @@ Object::Object()
   }
 
   angle = 0.0f;
+  angle2 = 0.0f;
+  swap = false;
 
   glGenBuffers(1, &VB);
   glBindBuffer(GL_ARRAY_BUFFER, VB);
@@ -79,8 +81,11 @@ Object::~Object()
 
 void Object::Update(unsigned int dt)
 {
-  angle += dt * M_PI/1000;
-  model = glm::rotate(glm::mat4(1.0f), (angle), glm::vec3(0.0, 1.0, 0.0));
+  angle += dt * M_PI/10000;
+  angle2 += dt * M_PI/10000;
+
+  model = glm::rotate(glm::mat4(1.0f), (angle)*1000, glm::vec3(0.0, 1.0, 0.0))
+      * glm::translate(glm::mat4(1.0f), glm::vec3 (sin(angle2)*10, 0.0, cos(angle2)*10));
 }
 
 glm::mat4 Object::GetModel()

@@ -37,7 +37,7 @@ bool Shader::AddShader(GLenum ShaderType)
 {
   std::string s;
 
-  if(ShaderType == GL_VERTEX_SHADER)
+  if(ShaderType == GL_VERTEX_SHADER) //file .glsl
   {
     s = "#version 330\n \
           \

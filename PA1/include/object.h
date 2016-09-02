@@ -22,6 +22,8 @@ class Object
     GLuint IB;
 
     float angle;
+    float angle2;
+    bool swap;
 };
 
 #endif /* OBJECT_H */

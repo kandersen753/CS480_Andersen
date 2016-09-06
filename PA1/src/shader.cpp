@@ -1,4 +1,5 @@
 #include "shader.h"
+#include <fstream>
 
 Shader::Shader()
 {
@@ -36,10 +37,22 @@ bool Shader::Initialize()
 bool Shader::AddShader(GLenum ShaderType)
 {
   std::string s;
+  char temp[100];
+  std::ifstream fin;
 
   if(ShaderType == GL_VERTEX_SHADER) //file .glsl
   {
-    s = "#version 330\n \
+    fin.open("../shaders/vertexShader.glsl");
+    while (fin.good())
+    {
+      fin.getline(temp , 100);
+      s += temp;
+      s += '\n';
+    }
+
+    fin.close();
+    fin.clear();
+    /*s = "#version 330\n \
           \
           layout (location = 0) in vec3 v_position; \
           layout (location = 1) in vec3 v_color; \
@@ -56,11 +69,22 @@ bool Shader::AddShader(GLenum ShaderType)
             gl_Position = (projectionMatrix * viewMatrix * modelMatrix) * v; \
             color = v_color; \
           } \
-          ";
+          ";*/
   }
   else if(ShaderType == GL_FRAGMENT_SHADER)
   {
-    s = "#version 330\n \
+
+    fin.open("../shaders/fragmentShader.glsl");
+    while (fin.good())
+    {
+      fin.getline(temp , 100);
+      s += temp;
+      s += '\n';
+    }
+
+    fin.close();
+    fin.clear();
+    /*s = "#version 330\n \
           \
           smooth in vec3 color; \
           \
@@ -70,7 +94,7 @@ bool Shader::AddShader(GLenum ShaderType)
           { \
              frag_color = vec4(color.rgb, 1.0); \
           } \
-          ";
+          ";*/
   }
 
   GLuint ShaderObj = glCreateShader(ShaderType);

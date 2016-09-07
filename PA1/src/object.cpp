@@ -84,8 +84,8 @@ void Object::Update(unsigned int dt)
   angle += dt * M_PI/10000;
   angle2 += dt * M_PI/5000;
 
-  model = glm::translate(glm::mat4(1.0f), glm::vec3 (sin(angle2)*10, 0.0f, cos(angle2)*10))
-                * glm::rotate(glm::mat4(1.0f), (angle)*10, glm::vec3(0.0, 1.0, 0.0));
+  model = glm::translate(glm::mat4(1.0f), glm::vec3 (sin(angle2)*10, 0.0f, cos(angle2)*10));
+  model *= glm::rotate(glm::mat4(1.0f), (angle)*10, glm::vec3(0.0, 1.0, 0.0));
 }
 
 glm::mat4 Object::GetModel()

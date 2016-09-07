@@ -1,56 +1,15 @@
 # PA1: Spinning Cube
 
-# Dependencies, Building, and Running
+# Kurt Andersen
+#CS 480
 
-## Dependency Instructions
-For both of the operating systems to run this project installation of these three programs are required [GLEW](http://glew.sourceforge.net/), [GLM](http://glm.g-truc.net/0.9.7/index.html), and [SDL2](https://wiki.libsdl.org/Tutorials).
+For this project, we were required to take the existing spinning cube, then make it orbit around the origin of our field of view, and keep the cube itself rotating.
 
-This project uses OpenGL 3.3. Some computers, such as virtual machines in the ECC, can not run this version. In in order to run OpenGL 2.7 follow the instructions at [Using OpenGL 2.7](https://github.com/HPC-Vis/computer-graphics/wiki/Using-OpenGL-2.7)
+We were also required to make the shaders load from file. The way I handled the shaders is, I changed the function call for the shaders themselves. When the function is called, it is called with the shader type, as well as the file path for the particular shader.
 
-### Ubuntu/Linux
-```bash
-sudo apt-get install libglew-dev libglm-dev libsdl2-dev
-```
+When I changed the path of the cube, I origially had the functions rotate * translate.  After some confusion I adjusted the functions to go translate * rotate.
 
-### Mac OSX
-Installation of brew is suggested to easily install the libs. Ensure that the latest version of the Developer Tools is installed.
-```bash
-brew install glew glm sdl2
-```
+In order to run this project, change directories into the build directory.  From there in the command line input : > make clean; make
+then once the build is complete, input : > ./Tutorial
 
-## Building and Running
-To build this project there are two options. One is to use CMake which makes including new libraries easier, and handles new files added automatically to the src and include directory. CMake is a small new learning curve but makes things easier in the future.
-The second option is to use the provided Makefile which is used as usual.
-
-Running the make in a separate directory will allow easy cleanup of the build data, and an easy way to prevent unnecessary data to be added to the git repository.  
-
-### CMake Instructions
-The building of the project is done using CMake, installation with apt-get or brew may be necessary. Later use with CMake and Shader files will be require the copy of a directory where those files are stored (ex. shaders). To do this in the ```add_custom_target``` function place 
-```cmake
-COMMAND ${CMAKE_COMMAND} -E copy_directory ${PROJECT_SOURCE_DIR}/shaders/ ${CMAKE_CURRENT_BINARY_DIR}/shaders
-```
-
-```bash
-mkdir build
-cd build
-cmake ..
-make
-./Tutorial
-```
-
-### Makefile Instructions 
-The makefile works as expected and must be updated with new files added in.
-
-```bash
-mkdir build
-cd build
-cp ../makefile .
-make
-./Tutorial
-```
-
-## Ubuntu.cse.unr.edu
-OpenGL 3.3 will run on the [ubuntu.cse.unr.edu](https://ubuntu.cse.unr.edu/) website. To do so follow the build instructions, but when running the Tutorial executable use this line to execute.
-```bash
-/usr/NX/scripts/vgl/vglrun ./Tutorial
-```
+When the program runs, the window name will contain my name "Kurt Andersen"

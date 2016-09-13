@@ -66,6 +66,8 @@ Object::Object()
 
   rotator = 1;
   translator = 1;
+  priorRotate = 1;
+  priorTranslate = 1;
 
   glGenBuffers(1, &VB);
   glBindBuffer(GL_ARRAY_BUFFER, VB);
@@ -88,29 +90,49 @@ void Object::Update(unsigned int dt, unsigned int dt2, unsigned int keyPress)
   switch (keyPress)
   {
     case 97:
+      priorRotate = rotator;
       rotator = 1;
       break;
 
     case 115:
-      rotator = -1;
+      priorRotate = rotator;
+      rotator = -1;      
       break;
 
     case 113:
+      priorTranslate = translator;
       translator = 1;
       break;
 
     case 119:
+      priorTranslate = translator;    
       translator = -1;
       break;
 
-    case 13:
+    case 13:     
       translator = 0;
       rotator = 0;
       break;
 
     case 39:
-      translator = 1;
-      rotator = 1;
+      rotator = priorRotate;
+      translator = priorTranslate;
+      break;
+
+    case 122:
+      rotator = 0;
+      break;
+
+    case 120:
+      rotator = priorRotate;
+      break;
+
+    case 99:
+      translator = 0;
+      break;
+
+    case 118:
+      translator = priorTranslate;
       break;
   }
 

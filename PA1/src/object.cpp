@@ -64,8 +64,6 @@ Object::Object()
   angle2 = 0.0f;
   swap = false;
 
-  rotator = 1;
-  translator = 1;
 
   glGenBuffers(1, &VB);
   glBindBuffer(GL_ARRAY_BUFFER, VB);
@@ -84,64 +82,11 @@ Object::~Object()
 
 void Object::Update(unsigned int dt, unsigned int dt2, unsigned int keyPress)
 {
-
-  switch (keyPress)
-  {
-    case 97:
-      rotator = 1;
-      break;
-
-    case 115:
-      rotator = -1;
-      break;
-
-    case 113:
-      translator = 1;
-      break;
-
-    case 119:
-      translator = -1;
-      break;
-
-    case 13:
-      translator = 0;
-      rotator = 0;
-      break;
-
-    case 39:
-      translator = 1;
-      rotator = 1;
-      break;
-  }
-
-
-  //change translation direction
-  if (translator == 1)
-  {
   angle2 += dt * M_PI/5000;
-  }
-  else if (translator == -1)
-  {
-  angle2 -= dt * M_PI/5000;
-  }
-
-
-  //change rotation direction
-  if (rotator == 1)
-  {
   angle += dt * M_PI/10000;
-  }
-  else if (rotator == -1)
-  {
-  angle -= dt * M_PI/10000;
-  }
 
  
   model = glm::translate(glm::mat4(1.0f), glm::vec3 (sin(angle2)*10, 0.0f, cos(angle2)*10));
-  //counterclockwise
-  //model *= glm::rotate(glm::mat4(1.0f), (angle)*-10, glm::vec3(0.0, 1.0, 0.0));
-
-  //counterclockwise
   model *= glm::rotate(glm::mat4(1.0f), (angle)*10, glm::vec3(0.0, 1.0, 0.0));
 }
 

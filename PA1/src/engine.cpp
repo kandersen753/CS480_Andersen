@@ -8,7 +8,6 @@ Engine::Engine(string name, int width, int height)
   m_WINDOW_HEIGHT = height;
   m_FULLSCREEN = false;
   keyPress = 0;
-  paused = false;
 }
 
 Engine::Engine(string name)
@@ -18,7 +17,6 @@ Engine::Engine(string name)
   m_WINDOW_WIDTH = 0;
   m_FULLSCREEN = true;
   keyPress = 0;
-  paused = false;
 }
 
 Engine::~Engine()
@@ -63,23 +61,14 @@ void Engine::Run()
     // Check the keyboard input
     while(SDL_PollEvent(&m_event) != 0)
     {
-      keyPress = Keyboard();
+      Keyboard();
     }
-    if (keyPress == 13 || keyPress == 39)
-    {
-      paused = !paused;
-    }
-
-    if (!paused)
-    {
-      // Update the DT
-      m_DT = getDT();
-      m_DT2 = getDT();
-    }
+    
+    m_DT = getDT();
+    m_DT2 = getDT();
 
     m_graphics->Update(m_DT, m_DT2, keyPress);
 
-    std::cout << keyPress << std::endl;
     // Update and render the graphics
     m_graphics->Render();
 
@@ -88,7 +77,7 @@ void Engine::Run()
   }
 }
 
-unsigned int Engine::Keyboard()
+void Engine::Keyboard()
 {
   if(m_event.type == SDL_QUIT)
   {
@@ -102,8 +91,6 @@ unsigned int Engine::Keyboard()
       m_running = false;
     }
   }
-
-  return m_event.key.keysym.sym;
 }
 
 unsigned int Engine::getDT()

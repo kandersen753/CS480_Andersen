@@ -15,7 +15,7 @@ class Engine
     ~Engine();
     bool Initialize();
     void Run();
-    unsigned int Keyboard();
+    void Keyboard();
     unsigned int getDT();
     long long GetCurrentTimeMillis();
   
@@ -35,7 +35,6 @@ class Engine
     bool m_running;
 
     unsigned int keyPress;
-    bool paused;
 };
 
 #endif // ENGINE_H

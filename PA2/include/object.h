@@ -27,6 +27,8 @@ class Object
 
     int rotator;
     int translator;
+    int priorRotate;
+    int priorTranslate;
 };
 
 #endif /* OBJECT_H */

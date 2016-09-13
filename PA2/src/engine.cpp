@@ -65,17 +65,18 @@ void Engine::Run()
     {
       keyPress = Keyboard();
     }
-    if (keyPress == 13 || keyPress == 39)
+    /*if (keyPress == 13)
     {
-      paused = !paused;
+      paused = true;
     }
+    if (keyPress == 39)
+    {
+      paused = false;
+    }*/
 
-    if (!paused)
-    {
-      // Update the DT
-      m_DT = getDT();
-      m_DT2 = getDT();
-    }
+    // Update the DT
+    m_DT = getDT();
+    m_DT2 = getDT();
 
     m_graphics->Update(m_DT, m_DT2, keyPress);
 

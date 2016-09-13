@@ -24,9 +24,6 @@ class Object
     float angle;
     float angle2;
     bool swap;
-
-    int rotator;
-    int translator;
 };
 
 #endif /* OBJECT_H */

@@ -1,15 +1,31 @@
-# PA1: Spinning Cube
+# PA2: Keyboard Input
 
 # Kurt Andersen
 #CS 480
 
-For this project, we were required to take the existing spinning cube, then make it orbit around the origin of our field of view, and keep the cube itself rotating.
+#Project Description
+For this project we were required to take the files from project 1, and add keyboard input into it.  We were assigned to map keys to switch the direction of the objects translation and rotation, keys to seperately freeze the rotation or translation, and keys to freeze both the translation and rotation.  At least one of these sets had to be mapped to the mouse buttons.
 
-We were also required to make the shaders load from file. The way I handled the shaders is, I changed the function call for the shaders themselves. When the function is called, it is called with the shader type, as well as the file path for the particular shader.
+#Build and Run Instructions
+In order to run this project, change directories into the  project directory.  Once within the project directory, enter on the command line: 
+> mkdir build
+> cd build
+> cmake ..
+> make
+> ./Tutorial
 
-When I changed the path of the cube, I origially had the functions rotate * translate.  After some confusion I adjusted the functions to go translate * rotate.
-
-In order to run this project, change directories into the build directory.  From there in the command line input : > make clean; make
-then once the build is complete, input : > ./Tutorial
+following those steps will create a folder that will hold the binary files and the executables for the program.  cmake runs a script that generates a make file for the project directory.  make will compile all of the files and create the executable.  The executable file is saved as "Tutorial"
 
 When the program runs, the window name will contain my name "Kurt Andersen"
+
+#Keyboard Inputs List
+'q' - clockwise translation
+'w' - counterclockwise translation
+'a' - clockwise rotation
+'s' - counterclockwise rotation
+'z' - freeze rotation
+'x' - restore rotation
+'c' - freeze translation
+'v' - restore translation
+left mouse button - freeze translation and rotation
+right mouse button - restore translation and rotation

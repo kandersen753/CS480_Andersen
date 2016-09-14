@@ -65,14 +65,6 @@ void Engine::Run()
     {
       keyPress = Keyboard();
     }
-    /*if (keyPress == 13)
-    {
-      paused = true;
-    }
-    if (keyPress == 39)
-    {
-      paused = false;
-    }*/
 
     // Update the DT
     m_DT = getDT();
@@ -80,7 +72,6 @@ void Engine::Run()
 
     m_graphics->Update(m_DT, m_DT2, keyPress);
 
-    std::cout << keyPress << std::endl;
     // Update and render the graphics
     m_graphics->Render();
 
@@ -91,20 +82,32 @@ void Engine::Run()
 
 unsigned int Engine::Keyboard()
 {
-  if(m_event.type == SDL_QUIT)
-  {
-    m_running = false;
-  }
-  else if (m_event.type == SDL_KEYDOWN)
-  {
-    // handle key down events here
-    if (m_event.key.keysym.sym == SDLK_ESCAPE)
-    {
-      m_running = false;
-    }
-  }
 
-  return m_event.key.keysym.sym;
+  switch (m_event.type)
+  {
+    //checks for exit
+    case SDL_QUIT:
+      m_running = false;
+      break;
+
+    //checks for exit
+    case SDL_KEYDOWN:
+      if (m_event.key.keysym.sym == SDLK_ESCAPE)
+      {
+        m_running = false;
+      }
+      break;
+
+    //checks for keyboard input
+    case SDL_KEYUP:
+      return m_event.key.keysym.sym;
+      break;
+
+    //checks for mouse input
+    case SDL_MOUSEBUTTONDOWN:
+      return m_event.button.button;
+      break;
+  }
 }
 
 unsigned int Engine::getDT()

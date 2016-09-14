@@ -89,48 +89,68 @@ void Object::Update(unsigned int dt, unsigned int dt2, unsigned int keyPress)
 
   switch (keyPress)
   {
+    //counterclockwise rotation
+    // 'a'
     case 97:
       priorRotate = rotator;
       rotator = 1;
       break;
 
+    //clockwise rotation
+    // 's'
     case 115:
       priorRotate = rotator;
       rotator = -1;      
       break;
 
+    //counterclockwise translation
+    // 'q'
     case 113:
       priorTranslate = translator;
       translator = 1;
       break;
 
+    //clockwise translation
+    // 'w'
     case 119:
       priorTranslate = translator;    
       translator = -1;
       break;
 
-    case 13:     
+    //freezes entire object
+    // left mouse button
+    case 1:     
       translator = 0;
       rotator = 0;
       break;
 
-    case 39:
+    //restores object to its prior state
+    // right mouse button
+    case 3:
       rotator = priorRotate;
       translator = priorTranslate;
       break;
 
+    //freezes rotation
+    // 'z'
     case 122:
       rotator = 0;
       break;
 
+    //restores previous rotation state
+    // 'x'
     case 120:
       rotator = priorRotate;
       break;
 
+    //freezes translation
+    // 'c' 
     case 99:
       translator = 0;
       break;
 
+    //restores previous translation state
+    // 'v'
     case 118:
       translator = priorTranslate;
       break;
@@ -158,12 +178,8 @@ void Object::Update(unsigned int dt, unsigned int dt2, unsigned int keyPress)
   angle -= dt * M_PI/10000;
   }
 
- 
+  //apply seperate times to object for rotation and translation
   model = glm::translate(glm::mat4(1.0f), glm::vec3 (sin(angle2)*10, 0.0f, cos(angle2)*10));
-  //counterclockwise
-  //model *= glm::rotate(glm::mat4(1.0f), (angle)*-10, glm::vec3(0.0, 1.0, 0.0));
-
-  //counterclockwise
   model *= glm::rotate(glm::mat4(1.0f), (angle)*10, glm::vec3(0.0, 1.0, 0.0));
 }
 

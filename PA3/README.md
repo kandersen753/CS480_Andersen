@@ -1,4 +1,4 @@
-# PA2: Keyboard Input
+# PA3: Moons
 
 # Kurt Andersen
 #CS 480

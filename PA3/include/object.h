@@ -30,6 +30,10 @@ class Object
 
     int rotator;
     int translator;
+    int moonTrans;
+    int moonRot;
+    int priorMoonTrans;
+    int priorMoonRot;
     int priorRotate;
     int priorTranslate;
 };

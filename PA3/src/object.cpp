@@ -70,6 +70,10 @@ Object::Object()
 
   rotator = 1;
   translator = 1;
+  moonTrans = 1;
+  moonRot = 1;
+  priorMoonTrans = 1;
+  priorMoonRot = 1;
   priorRotate = 1;
   priorTranslate = 1;
 
@@ -93,29 +97,29 @@ void Object::Update(unsigned int dt, unsigned int keyPress)
   switch (keyPress)
   {
     //counterclockwise rotation
-    // 'a'
-    case 97:
+    // up arrow
+    case 1073741904:
       priorRotate = rotator;
       rotator = 1;
       break;
 
     //clockwise rotation
-    // 's'
-    case 115:
+    // down arrow
+    case 1073741903:
       priorRotate = rotator;
       rotator = -1;      
       break;
 
     //counterclockwise translation
     // 'q'
-    case 113:
+    case 1073741905:
       priorTranslate = translator;
       translator = 1;
       break;
 
     //clockwise translation
     // 'w'
-    case 119:
+    case 1073741906:
       priorTranslate = translator;    
       translator = -1;
       break;
@@ -157,6 +161,50 @@ void Object::Update(unsigned int dt, unsigned int keyPress)
     case 118:
       translator = priorTranslate;
       break;
+
+    //q
+    case 113:
+      priorMoonRot = moonRot;
+      moonRot = 1;
+      break;
+
+    //w
+    case 119:
+      priorMoonRot = moonRot;
+      moonRot = -1;
+      break;
+
+    //e
+    case 101:
+      moonRot = 0;
+      break;
+    
+    //r
+    case 114:
+      moonRot = priorMoonRot;
+      break;
+    
+    //a
+    case 97:
+      priorMoonTrans = moonTrans;
+      moonTrans = 1;
+      break;
+      
+    //s
+    case 115:
+      priorMoonTrans = moonTrans;
+      moonTrans = -1;
+      break;
+      
+    //d
+    case 100:
+      moonTrans = 0;
+      break;
+    
+    //f
+    case 102:
+      moonTrans = priorMoonTrans;
+      break;
   }
 
 
@@ -174,16 +222,52 @@ void Object::Update(unsigned int dt, unsigned int keyPress)
   //change rotation direction
   if (rotator == 1)
   {
-    angles[0] += dt * M_PI/10000;
-    //angles[2] += dt * M_PI/400;    
+    angles[0] += dt * M_PI/10000;    
   }
   else if (rotator == -1)
   {
-    angles[0] -= dt * M_PI/10000;
-    //angles[2] -= dt * M_PI/400;    
+    angles[0] -= dt * M_PI/10000;    
   }
-  angles[2] += dt * M_PI/400;
-  angles[3] += dt * M_PI/5000;
+
+  if (moonTrans == 1)
+  {
+    angles[2] += dt * M_PI/800;
+  }
+  else if (moonTrans == -1)
+  {
+    angles[2] -= dt * M_PI/800;
+  }
+  else if (moonTrans == 0)
+  {
+    if (translator == 1)
+    {
+      angles[2] -= dt * M_PI/10000; 
+    }
+    else if (translator == -1)
+    {
+      angles[2] += dt * M_PI/10000; 
+    }
+  }
+
+  if (moonRot == 1)
+  {
+    angles[3] += dt * M_PI/5000;
+  }
+  else if (moonRot == -1)
+  {
+    angles[3] -= dt * M_PI/5000;
+  }
+  else if (moonRot == 0)
+  {
+    if (rotator == 1)
+    {
+      angles[3] -= dt * M_PI/10000;
+    }
+    else if (rotator == -1)
+    {
+      angles[3] += dt * M_PI/10000;
+    }
+  }
 
   //apply seperate times to object for rotation and translation
   model = glm::translate(glm::mat4(1.0f), glm::vec3 (sin(angles[1])*10, 0.0f, cos(angles[1])*10));

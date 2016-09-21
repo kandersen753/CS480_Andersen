@@ -19,13 +19,21 @@ following those steps will create a folder that will hold the binary files and t
 When the program runs, the window name will contain my name "Kurt Andersen"
 
 #Keyboard Inputs List
-'q' - clockwise translation <br />
-'w' - counterclockwise translation <br />
+'q' - moon clockwise rotation <br />
+'w' - moon counterclockwise rotation <br />
+'e' - moon freeze rotation<br />
+'r' - moon restore rotation<br />
 'a' - clockwise rotation <br />
 's' - counterclockwise rotation <br />
+'d' - <br />
+'f' - <br />
 'z' - freeze rotation <br />
 'x' - restore rotation <br />
 'c' - freeze translation <br />
 'v' - restore translation <br />
+left arrow - <br />
+right arrow - <br />
+up arrow - <br />
+down arrow - <br />
 left mouse button - freeze translation and rotation <br />
 right mouse button - restore translation and rotation <br />

@@ -255,17 +255,7 @@ void Object::Update(unsigned int dt, unsigned int keyPress)
   {
     angles[3] -= dt * M_PI/5000;
   }
-  /*else if (moonRot == 0)
-  {
-    if (rotator == 1)
-    {
-      angles[3] -= dt * M_PI/10000;
-    }
-    else if (rotator == -1)
-    {
-      angles[3] += dt * M_PI/10000;
-    }
-  }*/
+
 
   //apply seperate times to object for rotation and translation
   model = glm::translate(glm::mat4(1.0f), glm::vec3 (sin(angles[1])*10, 0.0f, cos(angles[1])*10));

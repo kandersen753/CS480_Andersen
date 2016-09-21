@@ -94,8 +94,12 @@ Object::~Object()
 
 void Object::Update(unsigned int dt, unsigned int keyPress)
 {
+
+  glm::mat4 tranmat;
+
   switch (keyPress)
   {
+
     //counterclockwise rotation
     // up arrow
     case 1073741904:
@@ -129,6 +133,8 @@ void Object::Update(unsigned int dt, unsigned int keyPress)
     case 1:     
       translator = 0;
       rotator = 0;
+      moonRot = 0;
+      moonTrans = 0;
       break;
 
     //restores object to its prior state
@@ -136,6 +142,8 @@ void Object::Update(unsigned int dt, unsigned int keyPress)
     case 3:
       rotator = priorRotate;
       translator = priorTranslate;
+      moonRot = priorMoonRot;
+      moonTrans = priorMoonTrans;
       break;
 
     //freezes rotation
@@ -237,17 +245,7 @@ void Object::Update(unsigned int dt, unsigned int keyPress)
   {
     angles[2] -= dt * M_PI/800;
   }
-  else if (moonTrans == 0)
-  {
-    if (translator == 1)
-    {
-      angles[2] -= dt * M_PI/10000; 
-    }
-    else if (translator == -1)
-    {
-      angles[2] += dt * M_PI/10000; 
-    }
-  }
+
 
   if (moonRot == 1)
   {
@@ -257,7 +255,7 @@ void Object::Update(unsigned int dt, unsigned int keyPress)
   {
     angles[3] -= dt * M_PI/5000;
   }
-  else if (moonRot == 0)
+  /*else if (moonRot == 0)
   {
     if (rotator == 1)
     {
@@ -267,13 +265,18 @@ void Object::Update(unsigned int dt, unsigned int keyPress)
     {
       angles[3] += dt * M_PI/10000;
     }
-  }
+  }*/
 
   //apply seperate times to object for rotation and translation
   model = glm::translate(glm::mat4(1.0f), glm::vec3 (sin(angles[1])*10, 0.0f, cos(angles[1])*10));
   model *= glm::rotate(glm::mat4(1.0f), (angles[0])*10, glm::vec3(0.0, 1.0, 0.0));
 
-  moon = glm::translate(model, glm::vec3(cos(angles[2])*3, 0.0f, sin(angles[2])*3));
+  tranmat = glm::translate(glm::mat4(1.0f), glm::vec3 (sin(angles[1])*10, 0.0f, cos(angles[1])*10));
+  model = tranmat * glm::rotate(glm::mat4(1.0f), (angles[0]*10), glm::vec3 (0.0f, 1.0f, 0.0f));
+
+
+  moon = glm::translate(glm::mat4(1.0f), glm::vec3(cos(angles[2])*3, 0.0f, sin(angles[2])*3)
+                                               + glm::vec3 (sin(angles[1])*10, 0.0f, cos(angles[1])*10));
   moon *= glm::rotate(glm::mat4(1.0f), (angles[3]*10), glm::vec3(0.0f, 1.0f, 0.0f));
 }
 

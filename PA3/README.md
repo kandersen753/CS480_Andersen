@@ -4,7 +4,7 @@
 #CS 480
 
 #Project Description
-For this project we were required to take the files from project 1, and add keyboard input into it.  We were assigned to map keys to switch the direction of the objects translation and rotation, keys to seperately freeze the rotation or translation, and keys to freeze both the translation and rotation.  At least one of these sets had to be mapped to the mouse buttons.
+For this project we were required to take the files from project 2, and add a moon to orbit the planet. Keyboard inputs were altered from project 2.  The arrow keys now change the rotation and translation of the planet.  See input list for full mapping.  The moon buttons will have the same interactions as the planet, i.e. changing rotation or translation direction or freezing translation or rotation.
 
 #Build and Run Instructions
 In order to run this project, change directories into the  project directory.  Once within the project directory, enter on the command line: <br />
@@ -19,21 +19,21 @@ following those steps will create a folder that will hold the binary files and t
 When the program runs, the window name will contain my name "Kurt Andersen"
 
 #Keyboard Inputs List
-'q' - moon clockwise rotation <br />
-'w' - moon counterclockwise rotation <br />
+'q' - moon counterclockwise rotation <br />
+'w' - moon clockwise rotation <br />
 'e' - moon freeze rotation<br />
 'r' - moon restore rotation<br />
-'a' - clockwise rotation <br />
-'s' - counterclockwise rotation <br />
-'d' - <br />
-'f' - <br />
-'z' - freeze rotation <br />
-'x' - restore rotation <br />
-'c' - freeze translation <br />
-'v' - restore translation <br />
-left arrow - <br />
-right arrow - <br />
-up arrow - <br />
-down arrow - <br />
-left mouse button - freeze translation and rotation <br />
-right mouse button - restore translation and rotation <br />
+'a' - moon clockwise translation <br />
+'s' - moon counterclockwise translation <br />
+'d' - moon freeze translation<br />
+'f' - moon restore translation<br />
+'z' - freeze planet rotation <br />
+'x' - restore planet rotation <br />
+'c' - freeze planet translation <br />
+'v' - restore planet translation <br />
+left arrow - planet counterclockwise rotation<br />
+right arrow - planet clockwise rotation <br />
+up arrow - planet clockwise translation<br />
+down arrow - planet counterclockwise translation<br />
+left mouse button - freeze both translation and rotation <br />
+right mouse button - restore both translation and rotation <br />

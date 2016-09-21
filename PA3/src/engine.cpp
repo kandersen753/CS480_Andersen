@@ -68,7 +68,8 @@ void Engine::Run()
 
     // Update the DT
     m_DT = getDT();
-    std::cout << keyPress << std::endl;
+    
+    m_graphics->Update(m_DT, keyPress);
 
     // Update and render the graphics
     m_graphics->Render();

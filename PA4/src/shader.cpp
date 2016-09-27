@@ -1,4 +1,5 @@
 #include "shader.h"
+#include <fstream>
 
 Shader::Shader()
 {
@@ -33,40 +34,22 @@ bool Shader::Initialize()
 }
 
 // Use this method to add shaders to the program. When finished - call finalize()
-bool Shader::AddShader(GLenum ShaderType)
+bool Shader::AddShader(GLenum ShaderType, std::string fileName)
 {
   std::string s;
+  char temp[100];
+  std::ifstream fin;
 
-  if(ShaderType == GL_VERTEX_SHADER)
+  fin.open(fileName.c_str());
+  while (fin.good())
   {
-    s = "#version 330\n \
-          \
-          layout (location = 0) in vec3 v_position; \
-          layout (location = 1) in vec3 v_color; \
-          \
-          flat out vec3 color; \
-          \
-          void main(void) \
-          { \
-            gl_Position = vec4(v_position, 1.0); \
-            color = v_color; \
-          } \
-          ";
+    fin.getline(temp , 100);
+    s += temp;
+    s += '\n';
   }
-  else if(ShaderType == GL_FRAGMENT_SHADER)
-  {
-    s = "#version 330\n \
-          \
-          flat in vec3 color; \
-          \
-          out vec4 frag_color; \
-          \
-          void main(void) \
-          { \
-             frag_color = vec4(color.rgb, 1.0); \
-          } \
-          ";
-  }
+
+  fin.close();
+  fin.clear();
 
   GLuint ShaderObj = glCreateShader(ShaderType);
 

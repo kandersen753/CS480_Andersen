@@ -258,8 +258,8 @@ void Object::Update(unsigned int dt, unsigned int keyPress)
 
 
   //apply seperate times to object for rotation and translation
-  model = glm::translate(glm::mat4(1.0f), glm::vec3 (sin(angles[1])*10, 0.0f, cos(angles[1])*10));
-  model *= glm::rotate(glm::mat4(1.0f), (angles[0])*10, glm::vec3(0.0, 1.0, 0.0));
+ /* model = glm::translate(glm::mat4(1.0f), glm::vec3 (sin(angles[1])*10, 0.0f, cos(angles[1])*10));
+  model *= glm::rotate(glm::mat4(1.0f), (angles[0])*10, glm::vec3(0.0, 1.0, 0.0));*/
 
   tranmat = glm::translate(glm::mat4(1.0f), glm::vec3 (sin(angles[1])*10, 0.0f, cos(angles[1])*10));
   model = tranmat * glm::rotate(glm::mat4(1.0f), (angles[0]*10), glm::vec3 (0.0f, 1.0f, 0.0f));

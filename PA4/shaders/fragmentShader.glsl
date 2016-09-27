@@ -1,6 +1,6 @@
 #version 330
 
-flat in vec3 color; 
+smooth in vec3 color; 
 out vec4 frag_color; 
 
 void main(void) 

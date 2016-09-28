@@ -1,15 +1,43 @@
-# PA1: Spinning Cube
+# PA4: Object Loading
 
-# Kurt Andersen
-#CS 480
+#Kurt Andersen
 
-For this project, we were required to take the existing spinning cube, then make it orbit around the origin of our field of view, and keep the cube itself rotating.
+## Description
+For this project we were instructed to write our own file loader.  The loader red a .obj file and loaded all the data properly in order to build the object contained within the file.  In this project I added random colors to every vertex to give my objects a fun look.  
 
-We were also required to make the shaders load from file. The way I handled the shaders is, I changed the function call for the shaders themselves. When the function is called, it is called with the shader type, as well as the file path for the particular shader.
+# Dependencies, Building, and Running
 
-When I changed the path of the cube, I origially had the functions rotate * translate.  After some confusion I adjusted the functions to go translate * rotate.
+## Dependency Instructions
+For both of the operating systems to run this project installation of these three programs are required [GLEW](http://glew.sourceforge.net/), [GLM](http://glm.g-truc.net/0.9.7/index.html), and [SDL2](https://wiki.libsdl.org/Tutorials).
 
-In order to run this project, change directories into the build directory.  From there in the command line input : > make clean; make
-then once the build is complete, input : > ./Tutorial
+This project uses OpenGL 3.3. Some computers, such as virtual machines in the ECC, can not run this version. In in order to run OpenGL 2.7 follow the instructions at [Using OpenGL 2.7](https://github.com/HPC-Vis/computer-graphics/wiki/Using-OpenGL-2.7)
 
-When the program runs, the window name will contain my name "Kurt Andersen"
+### Ubuntu/Linux
+```bash
+sudo apt-get install libglew-dev libglm-dev libsdl2-dev
+```
+
+### Mac OSX
+Installation of brew is suggested to easily install the libs. Ensure that the latest version of the Developer Tools is installed.
+```bash
+brew install glew glm sdl2
+```
+
+## Building and Running
+To build this project, be within the PA4 directory.  Once inside enter the following commands on the command line...
+: mkdir build <br />
+: cd build <br />
+: cmake .. <br />
+: make <br />
+
+Now that the file is made, we will run the file.  To run the file input on the command line...
+: ./Tutorial
+
+Once the program begins click back into the command prompt and enter the name of the file you wish to use within the objects folder.  DO NOT add the .obj as it is taken care of within the code.  There are 3 objects that are included in the objects folder, which are box, pinball, and dragon.  Once the file name is input, reopen the window that was generated when the program was executed.
+
+
+## Ubuntu.cse.unr.edu
+OpenGL 3.3 will run on the [ubuntu.cse.unr.edu](https://ubuntu.cse.unr.edu/) website. To do so follow the build instructions, but when running the Tutorial executable use this line to execute.
+```bash
+/usr/NX/scripts/vgl/vglrun ./Tutorial
+```

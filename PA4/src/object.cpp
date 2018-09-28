@@ -45,7 +45,7 @@ Object::Object()
       fin >> z;
 
       Vertices.push_back(Vertex(glm::vec3(x,y,z), 
-                    glm::vec3((float)(rand()%1000)/1000, (float)(rand()%1000)/1000, (float)(rand()%1000)/1000)));
+                    glm::vec3((float)Vertices.size()/435550, (float)Vertices.size()/435550, (float)Vertices.size()/435550)));
       fin >> s;
     }
     while (!fin.eof())
